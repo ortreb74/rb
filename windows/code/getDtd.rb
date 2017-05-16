@@ -3,6 +3,7 @@
 #end
 
 require 'set'
+require 'fileutils'
 
 # il y a le problème sur newcode
 
@@ -64,11 +65,14 @@ listOfFiles.each do |fileName|
 		
 		dtd = words[3].split('"')[1]
 		dtd = dtd.split(".")[0]
-		setDtd << dtd
 		
+		setDtd << dtd		
 		file.close
 		
 		if map.key?(dtd)		
+			dirToCreate = "c:/data/sgm/" + dtd			
+			FileUtils.cp(fileName, dirToCreate)
+			Dir.mkdir(dirToCreate) if !Dir.exists?(dirToCreate)		
 			script.puts "makehtm-dev #{fileName.sub!("c:/data/sgm/","/e8/webbu/uaur/sgm/")} #{map[dtd]}"
 		end		
 		
