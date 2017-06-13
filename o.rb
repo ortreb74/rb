@@ -22,9 +22,9 @@ xslt_param_dir=$root + "/" + w.join(".") + "_" + extension
 
 puts xslt_param_dir
 param=[]
-if Dir.exists?(xslt_param_dir)
-	file_content=[]
+if Dir.exists?(xslt_param_dir)	
 	Dir[xslt_param_dir + "/*" ].each do |file|
+		file_content=[]
 		File.open(file, "r").readlines.each { |line| file_content<<line.chomp }	
 		if file_content.length==1
 			param_value=file_content.join(" ")
